@@ -13,26 +13,15 @@ jobs:
     - name: Check pdf file
       run: |
         file main.pdf | grep -q ' PDF '
-    - name: Upload main.pdf
+    - name: Commit main.pdf
       run: |
-        set -e
-
         # configure git
         git config --global user.name "David Haberthür"
         git config --global user.email "email@davidhaberthuer.ch"
-
-        # setup ssh
-        mkdir ~/.ssh
-        chmod 700 ~/.ssh
-        echo "$DEPLOY_KEY" > ~/.ssh/id_ed25519
-        chmod 600 ~/.ssh/id_ed25519
-        git config --global core.sshCommand "ssh -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-        git clone --depth=1 git@github.com:habi/lecture_microtomography.git "$GITHUB_WORKSPACE/lecture"
-        cp -f main.pdf "$GITHUB_WORKSPACE/lecture/output/main.pdf"
-        cd "$GITHUB_WORKSPACE/lecture"
-        git add output/main.pdf
+        # commit compiled file
+        git add main.pdf
         git diff --exit-code HEAD -- output/main.pdf && exit 0
-        git commit -m "[github actions] update lecture pdf"
+        git commit -m "[github actions] update compiled pdf"
         git push
       env:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
