@@ -13,3 +13,6 @@ jobs:
     - name: Check pdf file
       run: |
         file main.pdf | grep -q ' PDF '
+    - name: Add and commit the PDF to the repository
+      uses: srt32/git-actions@v0.0.3
+        args: "git add main.pdf & git commit -m 'update main.pdf'"
