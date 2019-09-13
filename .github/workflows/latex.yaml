@@ -13,16 +13,3 @@ jobs:
     - name: Check pdf file
       run: |
         file main.pdf | grep -q ' PDF '
-    - name: Commit main.pdf
-      run: |
-        # configure git
-        git config --global user.name "David Haberthür"
-        git config --global user.email "email@davidhaberthuer.ch"
-        # commit compiled file
-        git add main.pdf
-        git diff --exit-code HEAD -- output/main.pdf && exit 0
-        git commit -m "[github actions] update compiled pdf"
-        git push
-      env:
-        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message, '[skip upload]')
