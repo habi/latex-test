@@ -1,7 +1,7 @@
 # Testing GitHub Actions
 
 This repository is used to test the GitHub action for [compiling a LaTeX document](https://github.com/xu-cheng/latex-action).
-Thanks to a lot of help of @xucheng over at [reddit](https://www.reddit.com/r/LaTeX/comments/cudaqz/github_actions_to_compile_latex_documents/) I managed to get it up and running from scratch.
+Thanks to a lot of help of [Cheng](https://github.com/xu-cheng/) over at [reddit](https://www.reddit.com/r/LaTeX/comments/cudaqz/github_actions_to_compile_latex_documents/) I managed to get it up and running from scratch.
 
 Here's what *you* need to do if you want to compile your LaTeX document in the cloud with [GitHub Actions](https://github.com/actions/).
 
