@@ -9,13 +9,18 @@ Here's what *you* need to do if you want to compile your LaTeX document in the c
 - I assume you want to have the generate PDF in the same repository as the one you're working on [1]
 - Generate a `gh-pages` branch for your repository and make sure it's being served by [GitHub pages](https://pages.github.com/) by going to 'Settings' > 'Options' in your repository
 - Generate an SSH key to use for deployment:
-  - ```bash
+  - Do this with
+  ```bash
   cd && mkdir tmp && cd tmp
   ssh-keygen -t ed25519 -o -a 100 -f actions_key
     ```
-  - Go to 'Settings' > 'Deploy keys' and copy the contents of the public key (`acttions_key.pub` ) to the form field.
-  - Go to 'Settings' > 'Secrets' and copy the contents of the private key (`actions_key`) to a new secret. Name this secred `DEPLOY_KEY`. This makes sure that the key is correctly picked up by the GitHub Action below.
-- Copy the [`main.yaml` file from Xu](https://github.com/xu-cheng/latex-tutorial-slides/blob/master/.github/workflows/main.yml) to `$your_repository/.github/workflows/main.yaml`. You can name the file however you want. Change the settings in the file relating to your Git `user.name`and `user.email`. Also take care that the file name of the LaTeX file is the same as the one you actually use in your repository.
+  - Go to 'Settings' > 'Deploy keys' and copy the contents of the public key (`actions_key.pub`) to the form field.
+  - Go to 'Settings' > 'Secrets' and copy the contents of the private key (`actions_key`) to a new secret. Name this secred `DEPLOY_KEY`.
+    This makes sure that the key is correctly picked up by the GitHub Action below.
+- Copy the [`main.yaml` file from Xu](https://github.com/xu-cheng/latex-tutorial-slides/blob/master/.github/workflows/main.yml) to `$your_repository/.github/workflows/main.yaml`.
+  You can name the file however you want.
+  Change the settings in the file relating to your Git `user.name`and `user.email`.
+  Also take care that the file name of the LaTeX file is the same as the one you actually use in your repository.
 - Commit a good version of your LaTeX file and wait a bit
 - Enjoy your automatically built PDF at [$username.github.io/$your_repository/main.pdf ](habi.github.io/latex-test/main.pdf)
 
