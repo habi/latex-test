@@ -1,7 +1,10 @@
-name: Build LaTeX document
-on: push
+name: Github Actions CI
+on:
+  push:
+    branches:
+      - master
 jobs:
-  build_latex_file:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Set up Git repository
@@ -13,6 +16,29 @@ jobs:
     - name: Check pdf file
       run: |
         file main.pdf | grep -q ' PDF '
-    - name: Add and commit the PDF to the repository
-      uses: srt32/git-actions@v0.0.3
-        args: "git add main.pdf & git commit -m 'update main.pdf'"
+    - name: Upload
+      run: |
+        set -e
+
+        # configure git
+        git config --global user.name "David Haberthür"
+        git config --global user.email "email@davidhaberthuer.ch"
+
+        # setup ssh
+        mkdir ~/.ssh
+        chmod 700 ~/.ssh
+        echo "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        git config --global core.sshCommand "ssh -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
+        mkdir -p "$GITHUB_WORKSPACE/gh-pages"
+        cp -f main.pdf "$GITHUB_WORKSPACE/gh-pages/main.pdf"
+        cd "$GITHUB_WORKSPACE/gh-pages"
+        git init
+        git checkout --orphan gh-pages
+        git add main.pdf
+        git commit -m "[github actions] deploy"
+        git remote add origin git@github.com:habi/latex-test.git
+        git push --force --set-upstream origin gh-pages
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
