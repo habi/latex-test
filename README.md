@@ -22,6 +22,6 @@ Here's what *you* need to do if you want to compile your LaTeX document in the c
   Change the settings in the file relating to your Git `user.name`and `user.email`.
   Also take care that the file name of the LaTeX file is the same as the one you actually use in your repository.
 - Commit a good version of your LaTeX file and wait a bit
-- Enjoy your automatically built PDF at [$username.github.io/$your_repository/main.pdf ](habi.github.io/latex-test/main.pdf)
+- Enjoy your automatically built PDF at [$username.github.io/$your_repository/main.pdf ](https://habi.github.io/latex-test//main.pdf)
 
 [1]: If not, see [here](https://github.com/xu-cheng/cv/blob/master/.github/workflows/main.yml)...
