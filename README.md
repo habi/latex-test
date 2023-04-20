@@ -14,8 +14,8 @@ Here's what *you* need to do if you want to compile your LaTeX document in the c
   cd && mkdir tmp && cd tmp
   ssh-keygen -t ed25519 -o -a 100 -f actions_key
     ```
-  - Go to 'Settings' > 'Deploy keys' and copy the contents of the public key (`actions_key.pub`) to the form field.
-  - Go to 'Settings' > 'Secrets' and copy the contents of the private key (`actions_key`) to a new secret. Name this secred `DEPLOY_KEY`.
+  - Go to 'Settings' > 'Deploy keys' and copy the contents of the public key (`actions_key.pub`) to the form field and give it `write` access to the repository.
+  - Go to 'Settings' > 'Secrets' and copy the contents of the private key (`actions_key`) to a new secret. Name this secret `DEPLOY_KEY`.
     This makes sure that the key is correctly picked up by the GitHub Action below.
 - Copy the [`main.yaml` file from Xu](https://github.com/xu-cheng/latex-tutorial-slides/blob/master/.github/workflows/main.yml) to `$your_repository/.github/workflows/main.yaml`.
   You can name the file however you want.
